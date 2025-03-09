@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { LoggerService } from 'src/Utils/logger.util';
 
 @Catch()
