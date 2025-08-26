@@ -1,0 +1,17 @@
+export const SUCCESS = 200;
+export const NOT_FOUND = 404;
+export const INACTIVE = 403;
+export const NOT_ALLOWED = 405;
+export const ERROR = 500;
+export const REQUEST_ERROR = 400;
+export const CONFLICT = 409;
+export const UNAUTHORIZED = 401;
+export const CREATED = 201;
+export const ACCEPTED = 202;
+export const NO_CONTENT = 204;
+export const NOT_MODIFIED = 304;
+export const FORBIDDEN = 403;
+export const METHOD_NOT_ALLOWED = 405;
+export const TOO_MANY_REQUESTS = 429;
+export const INTERNAL_SERVER_ERROR = 500;
+export const SERVICE_UNAVAILABLE = 503;

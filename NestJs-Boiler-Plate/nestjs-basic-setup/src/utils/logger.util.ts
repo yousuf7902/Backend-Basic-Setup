@@ -1,16 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, LoggerService as NestLogger } from '@nestjs/common';
+import { createLogger, transports, format, Logger } from 'winston';
 
 @Injectable()
-export class LoggerService {
-  log(message: string, context?: string) {
-    console.log(`[${context || 'NestApplication'}] ${message}`);
+export class LoggerService implements NestLogger {
+  private readonly logger: Logger;
+
+  constructor() {
+    this.logger = createLogger({
+      level: 'info',
+      format: format.combine(
+        format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+        format.printf(({ timestamp, level, message }) => `${timestamp} [${level.toUpperCase()}]: ${message}`),
+      ),
+      transports: [
+        new transports.Console(),
+        new transports.File({ filename: 'logs/error.log', level: 'error' }),
+        new transports.File({ filename: 'logs/app.log' }),
+      ],
+    });
   }
 
-  error(message: string, trace: string, context?: string) {
-    console.error(`[${context || 'NestApplication'}] ERROR: ${message}`, trace);
+  log(message: string) {
+    this.logger.info(message);
   }
-
-  warn(message: string, context?: string) {
-    console.warn(`[${context || 'NestApplication'}] WARN: ${message}`);
+  error(message: string, trace?: string) {
+    this.logger.error(message, { trace });
+  }
+  warn(message: string) {
+    this.logger.warn(message);
   }
 }

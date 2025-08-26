@@ -8,13 +8,14 @@ class DatabaseConfigService {
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
-      type: 'mysql',
+      type: 'mysql', 
       host: this.env.DB_HOST,
       port: Number(this.env.DB_PORT) ,
       username: this.env.DB_USERNAME ,
       password: this.env.DB_PASSWORD , //for windows xampp
-      //password: 'root', // for ubuntu mysql
+      // password: 'root', // for ubuntu mysql 
       database: this.env.DB_NAME ,
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
       logging: false,
     };
