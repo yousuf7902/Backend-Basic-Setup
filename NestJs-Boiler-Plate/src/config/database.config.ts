@@ -12,8 +12,7 @@ class DatabaseConfigService {
       host: this.env.DB_HOST,
       port: Number(this.env.DB_PORT) ,
       username: this.env.DB_USERNAME ,
-      password: this.env.DB_PASSWORD , //for windows xampp
-      // password: 'root', // for ubuntu mysql 
+      password: this.env.DB_PASSWORD ,
       database: this.env.DB_NAME ,
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
